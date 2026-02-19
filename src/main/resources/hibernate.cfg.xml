@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- MySQL Dialect -->
+        <property name="hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+
+        <!-- JDBC Driver -->
+        <property name="hibernate.connection.driver_class">
+            com.mysql.cj.jdbc.Driver
+        </property>
+
+        <!-- Database URL -->
+        <property name="hibernate.connection.url">
+            jdbc:mysql://localhost:3306/userdb
+        </property>
+
+        <!-- Your MySQL Username -->
+        <property name="hibernate.connection.username">
+            root
+        </property>
+
+        <!-- 🔥 PUT YOUR ACTUAL MYSQL PASSWORD HERE -->
+        <property name="hibernate.connection.password">
+            admin
+        </property>
+
+        <!-- Hibernate Auto Table Update -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Show SQL -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- 🔥 MAPPING YOUR ENTITIES -->
+        <mapping class="com.course.bean.Course"/>
+        <mapping class="com.course.bean.Enrollment"/>
+
+    </session-factory>
+</hibernate-configuration>
