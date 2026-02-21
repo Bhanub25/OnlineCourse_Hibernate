@@ -15,7 +15,7 @@ public class EnrollmentDAO {
 
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    // ✅ Only for custom ID format ENR0001...
+    
     public String generateEnrollmentID() {
         try (Session session = sessionFactory.openSession()) {
 
@@ -35,7 +35,7 @@ public class EnrollmentDAO {
         }
     }
 
-    // ✅ No query: just persist
+    
     public boolean recordEnrollment(Enrollment enroll, String courseID) {
         Transaction tx = null;
 
@@ -57,7 +57,7 @@ public class EnrollmentDAO {
                 enroll.setEnrollmentDate(new Date());
             }
 
-            session.persist(enroll); // ✅ automatic insert
+            session.persist(enroll);
 
             tx.commit();
             return true;
@@ -68,8 +68,6 @@ public class EnrollmentDAO {
             return false;
         }
     }
-
-    // ✅ No HQL update: load object + change + merge
     public boolean cancelEnrollment(String enrollmentID) {
         Transaction tx = null;
 
@@ -83,7 +81,7 @@ public class EnrollmentDAO {
             }
 
             enroll.setStatus("CANCELLED");
-            session.merge(enroll); // ✅ automatic update
+            session.merge(enroll); 
 
             tx.commit();
             return true;
@@ -95,7 +93,7 @@ public class EnrollmentDAO {
         }
     }
 
-    // ✅ No HQL needed: just get enrollment by id
+
     public Enrollment findEnrollment(String enrollmentID) {
         try (Session session = sessionFactory.openSession()) {
             return session.get(Enrollment.class, enrollmentID);
@@ -105,8 +103,7 @@ public class EnrollmentDAO {
         }
     }
 
-    // ✅ Enrollment history - without HQL you can use Criteria API,
-    // but simplest is HQL (recommended). If you want Criteria, tell me.
+    
     public List<Enrollment> getEnrollmentHistory(String studentID) {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery(
@@ -119,7 +116,7 @@ public class EnrollmentDAO {
         }
     }
 
-    // ✅ Active count - simplest with HQL
+
     public int getActiveEnrollmentCount(String courseID) {
         try (Session session = sessionFactory.openSession()) {
 
@@ -136,3 +133,4 @@ public class EnrollmentDAO {
         }
     }
 }
+
