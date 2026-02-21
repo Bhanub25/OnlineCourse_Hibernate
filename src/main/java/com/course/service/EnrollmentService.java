@@ -112,10 +112,10 @@ public class EnrollmentService {
             // insert enrollment
             Enrollment enroll = new Enrollment();
             enroll.setEnrollmentID(enrollmentDAO.generateEnrollmentID());
-            enroll.setCourse(course);                 // ✅ Many-to-One
+            enroll.setCourse(course);               
             enroll.setStudentID(studentID);
             enroll.setStudentName(studentName);
-            enroll.setAmountPaid(paymentAmount);      // ✅ double
+            enroll.setAmountPaid(paymentAmount);    
             enroll.setEnrollmentDate(enrollmentDate);
             enroll.setStatus("ACTIVE");
 
@@ -182,3 +182,4 @@ public class EnrollmentService {
         }
     }
 }
+
