@@ -166,6 +166,7 @@ public class CourseMain {
         }
 
         sc.close();
-        HibernateUtil.getSessionFactory().close(); // ✅ close hibernate
+        HibernateUtil.getSessionFactory().close(); 
     }
 }
+
