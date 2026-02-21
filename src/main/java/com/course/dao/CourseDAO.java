@@ -13,7 +13,7 @@ public class CourseDAO {
 
     private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-    // ✅ Find by PK (no query)
+    
     public Course findCourse(String courseID) {
         try (Session session = sessionFactory.openSession()) {
             return session.get(Course.class, courseID);
@@ -23,7 +23,7 @@ public class CourseDAO {
         }
     }
 
-    // ✅ View all (this is a query - unavoidable)
+    
     public List<Course> viewAllCourses() {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("from Course", Course.class).list();
@@ -33,7 +33,7 @@ public class CourseDAO {
         }
     }
 
-    // ✅ Insert (no query)
+    
     public boolean insertCourse(Course course) {
         Transaction tx = null;
         try (Session session = sessionFactory.openSession()) {
@@ -48,14 +48,13 @@ public class CourseDAO {
         }
     }
 
-    // ✅ Update available seats (NO HQL)
     public boolean updateAvailableSeats(String courseID, int newCount) {
         Transaction tx = null;
 
         try (Session session = sessionFactory.openSession()) {
             tx = session.beginTransaction();
 
-            Course course = session.get(Course.class, courseID); // no query
+            Course course = session.get(Course.class, courseID); 
             if (course == null) {
                 tx.rollback();
                 return false;
@@ -74,14 +73,13 @@ public class CourseDAO {
         }
     }
 
-    // ✅ Delete (no query)
     public boolean deleteCourse(String courseID) {
         Transaction tx = null;
 
         try (Session session = sessionFactory.openSession()) {
             tx = session.beginTransaction();
 
-            Course course = session.get(Course.class, courseID); // no query
+            Course course = session.get(Course.class, courseID); 
             if (course == null) {
                 tx.rollback();
                 return false;
@@ -98,3 +96,4 @@ public class CourseDAO {
         }
     }
 }
+
